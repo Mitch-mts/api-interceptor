@@ -1,7 +1,6 @@
 package mts.mtech.apiinterceptor.services.gameofthrones;
 
 import lombok.extern.slf4j.Slf4j;
-import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
 import mts.mtech.apiinterceptor.dto.gameofthrones.Continents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,15 +61,13 @@ public class ContinentsServiceImpl implements ContinentsService{
 
             log.info("body: {}", httpEntity);
 
-            var response = restTemplate.exchange(
+            return restTemplate.exchange(
                     GOT_CONTINENTS + "/" + id,
                     HttpMethod.GET,
                     httpEntity,
                     new ParameterizedTypeReference<Continents>() {
                     }
             ).getBody();
-
-            return response;
 
         }catch (Exception e){
             log.error("error: {}", e.getMessage());
