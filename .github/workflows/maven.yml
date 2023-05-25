@@ -49,8 +49,8 @@ jobs:
         
     - name: Pull Docker image
       run: |
-        docker pull bigmitcht/api-interceptor
+        docker pull bigmitcht/api-interceptor:latest
         
     - name: Run application
       run: |
-        docker run --name api-interceptor -p 8068:8068 bigmitcht/api-interceptor
+        docker run --name api-interceptor -p 8068:8068 bigmitcht/api-interceptor:latest
