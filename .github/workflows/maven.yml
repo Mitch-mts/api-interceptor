@@ -17,7 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: api-interceptor-runner
 
     steps:
     - uses: actions/checkout@v3
@@ -46,3 +46,11 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{secrets.DOCKER_USERNAME}}/api-interceptor:latest 
+        
+    - name: Pull Docker image
+      run: |
+        docker pull bigmitcht/api-interceptor:latest
+        
+    - name: Run application
+      run: |
+        docker run --name api-interceptor -p 8068:8068 bigmitcht/api-interceptor:latest
