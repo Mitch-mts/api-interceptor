@@ -17,7 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: api-interceptor-runner
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
