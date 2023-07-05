@@ -2,7 +2,6 @@ package mts.mtech.apiinterceptor.services.gameofthrones;
 
 import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
-import mts.mtech.apiinterceptor.dto.news.Sources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -47,7 +46,7 @@ public class CharacterServiceImpl  implements CharacterService{
             return response;
 
         }catch (Exception e){
-            log.error("error: {}", e.getMessage());
+            log.error("GOT characters error: {}", e.getMessage());
             throw new IllegalArgumentException("Failed to get GOT characters");
         }
     }
