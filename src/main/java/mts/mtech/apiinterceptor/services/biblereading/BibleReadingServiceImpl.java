@@ -30,6 +30,9 @@ public class BibleReadingServiceImpl implements BibleReadingService{
     @Value("${api.chapter}")
     private String CHAPTER;
 
+    @Value("${niv-translation}")
+    private String TRANSLATION;
+
     @Override
     public List<BibleReadingDto> getReading(BibleReadingRequest request) {
         try{
@@ -39,7 +42,8 @@ public class BibleReadingServiceImpl implements BibleReadingService{
             HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
             String url = BIBLE_READING +
                     BOOK + request.getBook() +
-                    CHAPTER + request.getChapter();
+                    CHAPTER + request.getChapter() +
+                    "?translation" + TRANSLATION;
 
             var response = restTemplate.exchange(
                     url,
