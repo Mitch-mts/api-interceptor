@@ -14,6 +14,7 @@ api:
   bible-reading: https://bible-go-api.rkeplin.com/v1
   book: /books/
   chapter: /chapters/
+  niv-translation: NIV
 
 # Discovery Server Access
 eureka:
