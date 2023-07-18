@@ -29,3 +29,7 @@ eureka:
       defaultZone: http://localhost:8762/eureka/
     healthcheck:
       enabled: true
+
+spring:
+  application:
+    name: api-interceptor
