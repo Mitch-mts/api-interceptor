@@ -30,7 +30,7 @@ public class BibleReadingServiceImpl implements BibleReadingService{
     @Value("${api.chapter}")
     private String CHAPTER;
 
-    @Value("${niv-translation}")
+    @Value("${api.niv-translation}")
     private String TRANSLATION;
 
     @Override
@@ -43,7 +43,9 @@ public class BibleReadingServiceImpl implements BibleReadingService{
             String url = BIBLE_READING +
                     BOOK + request.getBook() +
                     CHAPTER + request.getChapter() +
-                    "?translation" + TRANSLATION;
+                    "?translation=" + TRANSLATION;
+
+            log.info("bible reading url: {}", url);
 
             var response = restTemplate.exchange(
                     url,
