@@ -1,20 +1,14 @@
 package mts.mtech.apiinterceptor.dto.gameofthrones;
 
-import lombok.*;
+public record CharacterDetails(
+         Long id,
+         String firstName,
+         String lastName,
+         String fullName,
+         String title,
+         String family,
+         String image,
+         String imageUrl
+) {
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@ToString
-@Builder
-public class CharacterDetails {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String fullName;
-    private String title;
-    private String family;
-    private String image;
-    private String imageUrl;
 }

@@ -1,11 +1,5 @@
 package mts.mtech.apiinterceptor.dto.gameofthrones;
 
-import lombok.Builder;
-import lombok.Data;
+public record Continents(Long id, String name) {
 
-@Data
-@Builder
-public class Continents {
-    private Long id;
-    private String name;
 }
