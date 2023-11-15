@@ -23,7 +23,7 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
   client:
-    registerWithEureka: false
+    registerWithEureka: true
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://localhost:8762/eureka/
@@ -33,3 +33,11 @@ eureka:
 spring:
   application:
     name: api-interceptor
+
+logging:
+  file:
+    name: mts/logs/api-interceptor.log
+  level:
+    root: info
+    mts.mtech.apiinterceptor: debug
+
