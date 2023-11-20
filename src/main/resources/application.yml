@@ -24,7 +24,7 @@ eureka:
     lease-expiration-duration-in-seconds: 2
   client:
     registerWithEureka: true
-    fetchRegistry: false
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8762/eureka/
     healthcheck:

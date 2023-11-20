@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  app:
+    image: 'api-interceptor:latest'
+    build:
+      context: .
+    ports:
+      - "8068:8068"
+    container_name: api-interceptor
+    networks:
+      - geforce
+
+
+networks:
+  geforce:
+    external: false
