@@ -17,11 +17,15 @@ import java.util.List;
 @Service
 @Slf4j
 public class CharacterServiceImpl  implements CharacterService{
-    @Autowired
-    RestTemplate restTemplate;
+
+    private final RestTemplate restTemplate;
 
     @Value("${api.game-of-thrones-characters}")
     private String GOT_CHARACTERS;
+
+    public CharacterServiceImpl(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public List<CharacterDetails> getCharacters() {
@@ -30,7 +34,6 @@ public class CharacterServiceImpl  implements CharacterService{
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
             HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
-
             log.info("httpEntity: {}", httpEntity);
 
             var response = restTemplate.exchange(
@@ -42,12 +45,12 @@ public class CharacterServiceImpl  implements CharacterService{
             ).getBody();
 
             log.info("response: {}", response);
-
             return response;
 
         }catch (Exception e){
-            log.error("GOT characters error: {}", e.getMessage());
-            throw new IllegalArgumentException("Failed to get GOT characters");
+            log.error("GOT characters Exception: {}", e.getMessage());
+            String errormessage = "Failed to get GOT characters";
+            throw new RuntimeException(errormessage);
         }
     }
 
@@ -58,11 +61,10 @@ public class CharacterServiceImpl  implements CharacterService{
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
             HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
-
             log.info("body: {}", httpEntity);
 
             var response = restTemplate.exchange(
-                    GOT_CHARACTERS + "/" + id,
+                    GOT_CHARACTERS + id,
                     HttpMethod.GET,
                     httpEntity,
                     new ParameterizedTypeReference<CharacterDetails>() {
@@ -70,12 +72,11 @@ public class CharacterServiceImpl  implements CharacterService{
             ).getBody();
 
             log.info("response: {}", response);
-
             return response;
 
         }catch (Exception e){
-            log.error("error: {}", e.getMessage());
-            throw new IllegalArgumentException("Failed to get GOT characters");
+            log.error("Exception {}", e.getMessage());
+            throw new RuntimeException("Failed to get GOT character details");
         }
     }
 

@@ -9,7 +9,7 @@ api:
   news-top-headlines: top-headlines
   news-everything: everything
   news-sources: top-headlines/sources
-  game-of-thrones-characters: https://thronesapi.com/api/v2/Characters
+  game-of-thrones-characters: https://thronesapi.com/api/v2/Characters/
   game-of-thrones-continents: https://thronesapi.com/api/v2/Continents
   bible-reading: https://bible-go-api.rkeplin.com/v1
   book: /books/
@@ -23,8 +23,8 @@ eureka:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
   client:
-    registerWithEureka: true
-    fetchRegistry: true
+    registerWithEureka: false
+    fetchRegistry: false
     serviceUrl:
       defaultZone: http://localhost:8762/eureka/
     healthcheck:
