@@ -16,6 +16,13 @@ api:
   chapter: /chapters/
   niv-translation: NIV
 
+quotes:
+  base-url: https://zenquotes.io/api
+  daily-quotes: /today
+  quotes-list: /quotes
+  random: /random
+
+
 # Discovery Server Access
 eureka:
   instance:

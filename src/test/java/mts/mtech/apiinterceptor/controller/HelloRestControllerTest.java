@@ -1,16 +1,17 @@
 package mts.mtech.apiinterceptor.controller;
 
+import mts.mtech.apiinterceptor.services.sample.SampleService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,8 +21,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(HelloRestController.class)
 class HelloRestControllerTest {
-    @Autowired
-    HelloRestController restController = new HelloRestController();
+    @Mock
+    private SampleService service;
+    @InjectMocks
+    HelloRestController restController = new HelloRestController(service);
     @Autowired
     private MockMvc mockMvc;
 

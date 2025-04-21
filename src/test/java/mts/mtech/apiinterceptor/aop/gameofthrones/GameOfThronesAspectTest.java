@@ -1,7 +1,6 @@
 package mts.mtech.apiinterceptor.aop.gameofthrones;
 
 import mts.mtech.apiinterceptor.services.gameofthrones.ContinentsServiceImpl;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,6 @@ class GameOfThronesAspectTest {
     ContinentsServiceImpl service;
 
     @Test
-    @Disabled
     void logGameOfThronesContinents(){
         service.getContinents();
     }
