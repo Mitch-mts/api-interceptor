@@ -63,15 +63,11 @@
             <version>1.0.0</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>io.swagger.core.v3</groupId>-->
-<!--            <artifactId>swagger-annotations</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>io.swagger.parser.v3</groupId>-->
-<!--            <artifactId>swagger-parser</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>mts.mtech</groupId>
+            <artifactId>error-handling</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

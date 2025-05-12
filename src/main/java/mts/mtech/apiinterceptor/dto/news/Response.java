@@ -1,9 +1,13 @@
 package mts.mtech.apiinterceptor.dto.news;
 
 import lombok.*;
-import mts.mtech.apiinterceptor.utils.Constants;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.Serializable;
+
+import static mts.mtech.apiinterceptor.utils.Constants.FAILURE_INT_VALUE;
+import static mts.mtech.apiinterceptor.utils.Constants.SUCCESS_INT_VALUE;
 
 /**
  * @author Mitchell Tawanda Severa
@@ -22,7 +26,7 @@ public class Response<T> implements Serializable {
     private T result;
 
     public  Response<T> buildSuccessResponse(String message) {
-        this.statusCode = Constants.SUCCESS_INT_VALUE;
+        this.statusCode = SUCCESS_INT_VALUE;
         this.success = true;
         this.message = message;
         this.result = null;
@@ -30,7 +34,7 @@ public class Response<T> implements Serializable {
     }
 
     public Response<T> buildSuccessResponse(String message, final T result) {
-        this.statusCode = Constants.SUCCESS_INT_VALUE;
+        this.statusCode = SUCCESS_INT_VALUE;
         this.success = true;
         this.message = message;
         this.result = result;
@@ -38,7 +42,7 @@ public class Response<T> implements Serializable {
     }
 
     public Response<T> buildErrorResponse(String message) {
-        this.statusCode = Constants.FAILURE_INT_VALUE;
+        this.statusCode = FAILURE_INT_VALUE;
         this.success = false;
         this.message = message;
         this.result = null;
@@ -46,10 +50,14 @@ public class Response<T> implements Serializable {
     }
 
     public Response<T> buildErrorResponse(String message, final T result) {
-        this.statusCode = Constants.FAILURE_INT_VALUE;
+        this.statusCode = FAILURE_INT_VALUE;
         this.success = false;
         this.message = message;
         this.result = result;
         return this;
+    }
+
+    public ResponseEntity<Response<T>> toResponseEntity(HttpStatus status) {
+        return new ResponseEntity<>(this, status);
     }
 }

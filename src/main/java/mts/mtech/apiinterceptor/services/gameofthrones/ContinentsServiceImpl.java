@@ -47,7 +47,7 @@ public class ContinentsServiceImpl implements ContinentsService{
 
         }catch (Exception e){
             log.error("error: {}", e.getMessage());
-            throw new IllegalArgumentException("Failed to get GOT continents");
+            throw new IllegalArgumentException("Failed to get Game Of Thrones continents");
         }
     }
 
@@ -71,7 +71,7 @@ public class ContinentsServiceImpl implements ContinentsService{
 
         }catch (Exception e){
             log.error("error: {}", e.getMessage());
-            throw new IllegalArgumentException("Failed to get GOT continents");
+            throw new IllegalArgumentException("Failed to get Game Of Thrones continents");
         }
     }
 }

@@ -2,7 +2,6 @@ package mts.mtech.apiinterceptor.services.gameofthrones;
 
 import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -49,7 +48,7 @@ public class CharacterServiceImpl  implements CharacterService{
 
         }catch (Exception e){
             log.error("GOT characters Exception: {}", e.getMessage());
-            String errormessage = "Failed to get GOT characters";
+            String errormessage = "Failed to get Game Of Thrones characters";
             throw new RuntimeException(errormessage);
         }
     }
@@ -76,7 +75,7 @@ public class CharacterServiceImpl  implements CharacterService{
 
         }catch (Exception e){
             log.error("Exception {}", e.getMessage());
-            throw new RuntimeException("Failed to get GOT character details");
+            throw new RuntimeException("Failed to get Game Of Thrones character details");
         }
     }
 
