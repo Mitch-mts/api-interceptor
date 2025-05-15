@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Service
 @Slf4j
@@ -26,6 +28,21 @@ public class CharacterServiceImpl  implements CharacterService{
         this.restTemplate = restTemplate;
     }
 
+
+    public List<CharacterDetails> getGOTDetails(Long characterId) throws ExecutionException, InterruptedException {
+        CompletableFuture<List<CharacterDetails>> future1 = new CompletableFuture<>();
+        CompletableFuture<CharacterDetails> future2 = new CompletableFuture<>();
+
+        future1 = CompletableFuture.supplyAsync(this::getCharacters);
+        future2 = CompletableFuture.supplyAsync(() -> getCharacterById(characterId));
+        log.info("future1:: {}", future1.get());
+        log.info("future2:: {}", future2.get());
+
+        CompletableFuture<Void> allCompleted = CompletableFuture.allOf(future1, future2);
+        allCompleted.get();
+        log.info("allCompleted:: {}", allCompleted.get());
+        return future1.get();
+    }
     @Override
     public List<CharacterDetails> getCharacters() {
         try{

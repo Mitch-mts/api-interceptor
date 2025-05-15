@@ -1,0 +1,11 @@
+steps for deploying a static website on S3
+
+- required services => AWS S3 and Route53
+- on Route 53 register a domain to use for the static website (.click is cheaper)
+- go to S3 service
+- create a bucket with the same name as the registered domain name
+- once bucket is created click the bucket to enter inside
+- click on properties and scroll to the bottom to enable static hosting
+- go to permissions and put a bucket policy
+- upload the website files required
+- once upload is done go to the

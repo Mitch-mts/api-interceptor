@@ -1,7 +1,6 @@
 package mts.mtech.apiinterceptor.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
 import mts.mtech.apiinterceptor.dto.news.Response;
 import mts.mtech.apiinterceptor.services.gameofthrones.CharacterService;
@@ -9,6 +8,7 @@ import mts.mtech.apiinterceptor.utils.Constants;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @CrossOrigin
@@ -31,5 +31,10 @@ public class GameOfThronesRestController {
     public Response<CharacterDetails> getCharacterById(@PathVariable Long id){
         return new Response<CharacterDetails>()
                 .buildSuccessResponse(Constants.SUCCESS, characterService.getCharacterById(id));
+    }
+
+    @GetMapping("/character-details/{id}")
+    public Response<?> getGameOfThronesDetails(@PathVariable Long id) throws ExecutionException, InterruptedException {
+        return new Response<>().buildSuccessResponse("SUCCESS", characterService.getGOTDetails(id));
     }
 }
