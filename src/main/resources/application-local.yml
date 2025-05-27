@@ -1,0 +1,50 @@
+server:
+  port: 8068
+
+api-key:
+  news: 63f42a1eb6e64eba9f1509b50b50e202
+
+api:
+  news-base-url: https://newsapi.org/v2/
+  news-top-headlines: top-headlines
+  news-everything: everything
+  news-sources: top-headlines/sources
+  game-of-thrones-characters: https://thronesapi.com/api/v2/Characters/
+  game-of-thrones-continents: https://thronesapi.com/api/v2/Continents
+  bible-reading: https://bible-go-api.rkeplin.com/v1
+  book: /books/
+  chapter: /chapters/
+  niv-translation: NIV
+
+quotes:
+  base-url: https://zenquotes.io/api
+  daily-quotes: /today
+  quotes-list: /quotes
+  random: /random
+
+
+# Discovery Server Access
+eureka:
+  instance:
+    preferIpAddress: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka/
+    healthcheck:
+      enabled: true
+
+spring:
+  application:
+    name: api-interceptor
+
+logging:
+  file:
+    name: mts/logs/api-interceptor.log
+  level:
+    root: info
+    mts.mtech.apiinterceptor: debug
+
