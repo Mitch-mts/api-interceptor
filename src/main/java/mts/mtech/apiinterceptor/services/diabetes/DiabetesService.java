@@ -5,7 +5,6 @@ import mts.mtech.apiinterceptor.dto.diabetes.DiabetesResponse;
 import mts.mtech.apiinterceptor.dto.diabetes.Result;
 
 public interface DiabetesService {
-    DiabetesResponse getDiabetesPrediction(String name);
+    DiabetesResponse getDiabetesPrediction(Long recordId);
     Result initiateDiabetesPrediction(DiabetesRequest request);
-    DiabetesRequest getDiabetesPredictionRequest();
 }

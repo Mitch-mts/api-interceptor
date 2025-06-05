@@ -15,6 +15,7 @@ api:
   book: /books/
   chapter: /chapters/
   niv-translation: NIV
+  diabetes-url: https://localhost:8075/predict
 
 quotes:
   base-url: https://zenquotes.io/api
@@ -40,6 +41,22 @@ eureka:
 spring:
   application:
     name: api-interceptor
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/user_accounts
+    username: postgres
+    password: BigMitch
+    schema:
+      initial-catalog: user_accounts
+      create-if-not-exists: true
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 logging:
   file:

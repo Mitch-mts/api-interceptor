@@ -25,6 +25,8 @@ public class Diabetes implements Serializable {
     @Column
     private Long id;
     @Column
+    private String userName;
+    @Column
     private String firstName;
     @Column
     private String lastName;

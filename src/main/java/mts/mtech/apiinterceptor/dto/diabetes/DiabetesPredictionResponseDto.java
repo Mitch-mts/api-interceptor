@@ -11,8 +11,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Result implements Serializable {
-    private String message;
-    private boolean success;
-    private Long id;
+public class DiabetesPredictionResponseDto implements Serializable {
+    private boolean predictionResult;
 }
