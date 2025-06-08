@@ -15,6 +15,7 @@ api:
   book: /books/
   chapter: /chapters/
   niv-translation: NIV
+  diabetes-url: https://localhost:8075/predict
 
 quotes:
   base-url: https://zenquotes.io/api
