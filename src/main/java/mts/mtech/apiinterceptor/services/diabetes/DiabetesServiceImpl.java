@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @Service
 @Slf4j
@@ -35,8 +36,9 @@ public class DiabetesServiceImpl implements DiabetesService{
     }
 
     @Override
-    public DiabetesResponse getDiabetesPrediction(Long recordId) {
-        Diabetes diabetesRecord =  diabetesRepository.findById(recordId).orElseThrow(() -> new RuntimeException("Record not found"));
+    public DiabetesResponse getDiabetesPrediction(String referenceId) {
+        Diabetes diabetesRecord =  diabetesRepository.findByReferenceId(referenceId)
+                .orElseThrow(() -> new RuntimeException("Record not found"));
         return DiabetesResponse.builder()
                 .dateCreated(diabetesRecord.getDateCreated())
                 .firstName(diabetesRecord.getFirstName())
@@ -70,6 +72,7 @@ public class DiabetesServiceImpl implements DiabetesService{
                                 .insulinLevel(requestDto.getInsulinLevel())
                                 .userName(request.getFirstName() + "-" + request.getLastName())
                                 .lastName(request.getLastName())
+                                .referenceId(generateReferenceId())
                                 .build();
         Diabetes savedRecord = diabetesRepository.save(diabetesRecord);
 
@@ -84,7 +87,7 @@ public class DiabetesServiceImpl implements DiabetesService{
         return Result.builder()
                 .message("SUCCESS")
                 .success(true)
-                .id(savedRecord.getId())
+                .referenceId(savedRecord.getReferenceId())
                 .build();
     }
 
@@ -123,4 +126,15 @@ public class DiabetesServiceImpl implements DiabetesService{
             throw new RuntimeException(ex.getMessage());
         }
     }
+
+    public static String generateReferenceId() {
+        final String values = "0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM";
+        final Random random = new Random();
+        char[] password = new char[6];
+        for (int i = 0; i < 6; i++) {
+            password[i] = values.charAt(random.nextInt(values.length()));
+        }
+        return new String(password);
+    }
+
 }

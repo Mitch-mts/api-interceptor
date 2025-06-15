@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/v1/diabetes")
+@CrossOrigin
 public class DiabetesRestController {
     private final DiabetesService diabetesService;
 
@@ -26,9 +27,9 @@ public class DiabetesRestController {
         return new Response<Result>().buildSuccessResponse(Constants.SUCCESS, response);
     }
 
-    @GetMapping
-    public Response<DiabetesResponse> getDiabetesPrediction(@RequestParam Long recordId) {
-        var response = diabetesService.getDiabetesPrediction(recordId);
+    @GetMapping("/results")
+    public Response<DiabetesResponse> getDiabetesPrediction(@RequestParam String referenceId) {
+        var response = diabetesService.getDiabetesPrediction(referenceId);
         return new Response<DiabetesResponse>().buildSuccessResponse(Constants.SUCCESS, response);
     }
 }

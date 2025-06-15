@@ -51,6 +51,8 @@ public class Diabetes implements Serializable {
     @Column
     private boolean predictionResult;
     @Column
+    private String referenceId;
+    @Column
     @JsonFormat(pattern = "yyyy-MM-dd : HH:mm")
     private LocalDateTime dateCreated;
 }
