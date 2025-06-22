@@ -43,7 +43,7 @@ spring:
     name: api-interceptor
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://project_thanos_postgres15:5432/api_interceptor
+    url: jdbc:postgresql://user-accounts-db.cfgeoqs0ut6z.af-south-1.rds.amazonaws.com:5432/user_accounts
     username: postgres
     password: BigMitch#123
   sql:
