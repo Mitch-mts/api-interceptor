@@ -1,6 +1,7 @@
 package mts.mtech.apiinterceptor.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
 import mts.mtech.apiinterceptor.dto.news.Response;
 import mts.mtech.apiinterceptor.services.gameofthrones.CharacterService;
@@ -12,6 +13,7 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @CrossOrigin
+@Slf4j
 @RequestMapping("/v1/got")
 @Tag(name = "Game Of Thrones APIs", description = "Game Of Thrones Api with characters from the world's popular show")
 public class GameOfThronesRestController {
@@ -23,6 +25,7 @@ public class GameOfThronesRestController {
 
     @GetMapping("/characters")
     public Response<List<CharacterDetails>> getCharacters(){
+        log.debug("REST request to get characters from Game Of Thrones");
         return new Response<List<CharacterDetails>>()
                 .buildSuccessResponse(Constants.SUCCESS, characterService.getCharacters());
     }

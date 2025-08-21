@@ -44,7 +44,7 @@ public class CharacterServiceImpl  implements CharacterService{
         return future1.get();
     }
     @Override
-    public List<CharacterDetails> getCharacters() {
+    public List<CharacterDetails>   getCharacters() {
         try{
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);

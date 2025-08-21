@@ -6,7 +6,6 @@ import mts.mtech.apiinterceptor.dto.diabetes.DiabetesPredictionRequestDto;
 import mts.mtech.apiinterceptor.dto.diabetes.DiabetesRequest;
 import mts.mtech.apiinterceptor.dto.diabetes.DiabetesResponse;
 import mts.mtech.apiinterceptor.dto.diabetes.Result;
-import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
 import mts.mtech.apiinterceptor.persistence.DiabetesRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
