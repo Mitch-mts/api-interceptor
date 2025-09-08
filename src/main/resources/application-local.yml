@@ -23,6 +23,10 @@ quotes:
   quotes-list: /quotes
   random: /random
 
+datasets:
+  athletes: http://localhost:5001/api/athletes/all
+
+
 
 # Discovery Server Access
 eureka:
