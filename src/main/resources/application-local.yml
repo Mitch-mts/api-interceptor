@@ -69,3 +69,11 @@ logging:
     root: info
     mts.mtech.apiinterceptor: debug
 
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'

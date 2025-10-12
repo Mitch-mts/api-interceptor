@@ -1,6 +1,7 @@
 package mts.mtech.apiinterceptor.services.gameofthrones;
 
 import lombok.extern.slf4j.Slf4j;
+import mts.mtech.apiinterceptor.config.FailureCounter;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -20,12 +21,15 @@ import java.util.concurrent.ExecutionException;
 public class CharacterServiceImpl  implements CharacterService{
 
     private final RestTemplate restTemplate;
+    private final FailureCounter failureCounter;
+
 
     @Value("${api.game-of-thrones-characters}")
     private String GOT_CHARACTERS;
 
-    public CharacterServiceImpl(RestTemplate restTemplate) {
+    public CharacterServiceImpl(RestTemplate restTemplate, FailureCounter failureCounter) {
         this.restTemplate = restTemplate;
+        this.failureCounter = failureCounter;
     }
 
 
@@ -64,6 +68,7 @@ public class CharacterServiceImpl  implements CharacterService{
             return response;
 
         }catch (Exception e){
+            failureCounter.recordFailure();
             log.error("GOT characters Exception: {}", e.getMessage());
             String errormessage = "Failed to get Game Of Thrones characters";
             throw new RuntimeException(errormessage);
