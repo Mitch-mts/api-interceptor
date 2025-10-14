@@ -6,6 +6,7 @@ import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
 import mts.mtech.apiinterceptor.dto.news.Response;
 import mts.mtech.apiinterceptor.services.gameofthrones.CharacterService;
 import mts.mtech.apiinterceptor.utils.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,20 @@ public class GameOfThronesRestController {
      * Field injection: Dependencies are injected directly into fields using the @Autowired annotation.
      * Setter injection: Dependencies are injected via setter methods annotated with @Autowired.
      * Constructor injection: Dependencies are provided through the class constructor
+     *
+     *
+     * Why is constructor injection preferred
+     * Immutability: Dependencies are set at the time of object creation and cannot be changed later, promoting immutability.
+     * Easier Testing: Dependencies can be easily mocked or stubbed during unit testing, as they are provided through the constructor.
+     * Clearer Dependencies: The constructor explicitly lists all required dependencies, making it easier to understand what the class needs to function.
+     * Avoids Null References: Since dependencies are provided at construction time, there is less risk of null references.
+     * Better for Required Dependencies: Constructor injection is ideal for mandatory dependencies that the class cannot function without.
+     *
+     * example of the field injection
+     * @Autowired
+     * private CharacterService characterService;
      * */
+
     private final CharacterService characterService;
 
     public GameOfThronesRestController(CharacterService characterService) {
@@ -30,7 +44,6 @@ public class GameOfThronesRestController {
 
     @GetMapping("/characters")
     public Response<List<CharacterDetails>> getCharacters(){
-        log.debug("REST request to get characters from Game Of Thrones");
         return new Response<List<CharacterDetails>>()
                 .buildSuccessResponse(Constants.SUCCESS, characterService.getCharacters());
     }

@@ -3,6 +3,8 @@ package mts.mtech.apiinterceptor.services.gameofthrones;
 import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.config.FailureCounter;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
+import mts.mtech.apiinterceptor.utils.LoggingUtility;
+import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -48,13 +50,14 @@ public class CharacterServiceImpl  implements CharacterService{
         return future1.get();
     }
     @Override
-    public List<CharacterDetails>   getCharacters() {
+    public List<CharacterDetails> getCharacters() {
         try{
+            LoggingUtility.logWithContextAndLogLevel(CharacterServiceImpl.class, "getCharacters", "Fetching Game Of Thrones characters from external API", "", Level.INFO);
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
             HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
-            log.info("httpEntity: {}", httpEntity);
+            LoggingUtility.logWithContextAndLogLevel(CharacterServiceImpl.class, "getCharacters", "HTTP Entity for fetching Game Of Thrones characters", httpEntity, Level.DEBUG);
 
             var response = restTemplate.exchange(
                     GOT_CHARACTERS,
@@ -64,10 +67,10 @@ public class CharacterServiceImpl  implements CharacterService{
                     }
             ).getBody();
 
-            log.info("response: {}", response);
+            LoggingUtility.logWithContextAndLogLevel(CharacterServiceImpl.class, "getCharacters", "Successfully fetched Game Of Thrones characters from external API", response, Level.INFO);
             return response;
 
-        }catch (Exception e){
+        } catch (Exception e){
             failureCounter.recordFailure();
             log.error("GOT characters Exception: {}", e.getMessage());
             String errormessage = "Failed to get Game Of Thrones characters";
