@@ -12,11 +12,16 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@CrossOrigin
 @Slf4j
 @RequestMapping("/v1/got")
 @Tag(name = "Game Of Thrones APIs", description = "Game Of Thrones Api with characters from the world's popular show")
 public class GameOfThronesRestController {
+    /**
+     * types of dependency injection in Spring Boot
+     * Field injection: Dependencies are injected directly into fields using the @Autowired annotation.
+     * Setter injection: Dependencies are injected via setter methods annotated with @Autowired.
+     * Constructor injection: Dependencies are provided through the class constructor
+     * */
     private final CharacterService characterService;
 
     public GameOfThronesRestController(CharacterService characterService) {
