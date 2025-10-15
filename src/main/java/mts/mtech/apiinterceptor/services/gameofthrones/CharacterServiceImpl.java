@@ -72,7 +72,7 @@ public class CharacterServiceImpl  implements CharacterService{
 
         } catch (Exception e){
             failureCounter.recordFailure();
-            log.error("GOT characters Exception: {}", e.getMessage());
+            LoggingUtility.logWithContextAndLogLevel(CharacterServiceImpl.class, "getCharacters", "Error fetching Game Of Thrones characters from external API", e, Level.ERROR);
             String errormessage = "Failed to get Game Of Thrones characters";
             throw new RuntimeException(errormessage);
         }
