@@ -77,3 +77,14 @@ management:
     web:
       exposure:
         include: '*'
+
+
+togglz:
+    feature-enums: mts.mtech.apiinterceptor.enums.Features
+    enabled: true
+    console:
+      enabled: true
+      path: /togglz-console
+      users:
+        - admin:admin123
+      secured: false
