@@ -3,9 +3,9 @@ package mts.mtech.apiinterceptor.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.gameofthrones.CharacterDetails;
-import mts.mtech.apiinterceptor.dto.news.Response;
 import mts.mtech.apiinterceptor.services.gameofthrones.CharacterService;
 import mts.mtech.apiinterceptor.utils.Constants;
+import mts.mtech.apiinterceptor.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -2,7 +2,7 @@ package mts.mtech.apiinterceptor.exceptionhandling;
 
 import mts.mtech.apiinterceptor.dto.ErrorResponse;
 
-import mts.mtech.apiinterceptor.dto.news.Response;
+import mts.mtech.apiinterceptor.utils.Response;
 import mts.mtech.errorhandling.exception.InvalidRequestException;
 import mts.mtech.errorhandling.exception.RecordNotFoundException;
 import mts.mtech.errorhandling.exception.SystemErrorException;

@@ -3,10 +3,10 @@ package mts.mtech.apiinterceptor.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.biblereading.BibleReadingDto;
-import mts.mtech.apiinterceptor.dto.news.Response;
 import mts.mtech.apiinterceptor.services.biblereading.BibleReadingRequest;
 import mts.mtech.apiinterceptor.services.biblereading.BibleReadingService;
 import mts.mtech.apiinterceptor.utils.Constants;
+import mts.mtech.apiinterceptor.utils.Response;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
