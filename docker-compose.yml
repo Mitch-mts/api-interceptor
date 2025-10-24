@@ -10,8 +10,10 @@ services:
     container_name: api-interceptor
     networks:
       - geforce
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8762/eureka/
 
 
 networks:
   geforce:
-    external: false
+    external: true
