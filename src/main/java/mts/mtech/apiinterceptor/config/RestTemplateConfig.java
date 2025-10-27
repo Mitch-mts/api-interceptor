@@ -1,13 +1,13 @@
-package mts.mtech.apiinterceptor.services.config;
+package mts.mtech.apiinterceptor.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-public class ApiConfig {
+public class RestTemplateConfig {
 
-    @Bean(name = "restTemplate")
+    @Bean
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
