@@ -54,7 +54,7 @@ public class GameOfThronesRestController {
                 .buildSuccessResponse(Constants.SUCCESS, characterService.getCharacterById(id));
     }
 
-    @GetMapping("/character-details/{id}")
+
     public Response<?> getGameOfThronesDetails(@PathVariable Long id) throws ExecutionException, InterruptedException {
         return new Response<>().buildSuccessResponse("SUCCESS", characterService.getGOTDetails(id));
     }

@@ -13,9 +13,9 @@ public class ServiceResponseFactory {
     }
 
 
-    public ServiceResponse buildServiceResponse() {
+    public ServiceResponse buildServiceResponse(String processFunction) {
         return responseBuilderStrategies.stream()
-                .filter(s -> s.supportsStrategy("TEST"))
+                .filter(s -> s.supportsStrategy(processFunction))
                 .findFirst()
                 .orElseThrow()
                 .build("Test");

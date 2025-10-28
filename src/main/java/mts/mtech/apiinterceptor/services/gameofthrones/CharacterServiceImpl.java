@@ -36,8 +36,8 @@ public class CharacterServiceImpl  implements CharacterService{
 
 
     public List<CharacterDetails> getGOTDetails(Long characterId) throws ExecutionException, InterruptedException {
-        CompletableFuture<List<CharacterDetails>> future1 = new CompletableFuture<>();
-        CompletableFuture<CharacterDetails> future2 = new CompletableFuture<>();
+        CompletableFuture<List<CharacterDetails>> future1;
+        CompletableFuture<CharacterDetails> future2;
 
         future1 = CompletableFuture.supplyAsync(this::getCharacters);
         future2 = CompletableFuture.supplyAsync(() -> getCharacterById(characterId));
@@ -49,6 +49,7 @@ public class CharacterServiceImpl  implements CharacterService{
         log.info("allCompleted:: {}", allCompleted.get());
         return future1.get();
     }
+
     @Override
     public List<CharacterDetails> getCharacters() {
         try{

@@ -3,6 +3,8 @@ package mts.mtech.apiinterceptor.services.datasets;
 
 import lombok.extern.slf4j.Slf4j;
 import mts.mtech.apiinterceptor.dto.datasets.AthletesDto;
+import mts.mtech.apiinterceptor.utils.LoggingUtility;
+import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -15,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @Slf4j
 public class DataSetServiceImpl implements DataSetService{
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${datasets.athletes}")
     private String ATHLETES_URL;
@@ -31,9 +33,9 @@ public class DataSetServiceImpl implements DataSetService{
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
             HttpEntity<String> httpEntity = new HttpEntity<>("", httpHeaders);
-            log.info("httpEntity: {}", httpEntity);
+            LoggingUtility.logWithContextAndLogLevel(DataSetServiceImpl.class, "getAthletes", "HTTP Entity for fetching athletes dataset", httpEntity, Level.DEBUG);
 
-            var response = restTemplate.exchange(
+            return restTemplate.exchange(
                     ATHLETES_URL,
                     HttpMethod.GET,
                     httpEntity,
@@ -41,14 +43,11 @@ public class DataSetServiceImpl implements DataSetService{
                     }
             ).getBody();
 
-            log.info("response: {}", response);
-            return response;
-
         } catch (Exception e){
-            log.error("Failed to retrieve dataset details: {}",e.getMessage());
+            LoggingUtility.logWithContextAndLogLevel(DataSetServiceImpl.class, "getAthletes", "Failed to retrieve dataset details", e, Level.ERROR);
             return AthletesDto.builder()
                     .count("0")
-                    .message("Failed to fetch data")
+                    .message("Failed to fetch data from external API: " + e.getMessage())
                     .build();
         }
     }

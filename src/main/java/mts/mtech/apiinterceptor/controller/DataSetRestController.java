@@ -1,5 +1,6 @@
 package mts.mtech.apiinterceptor.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import mts.mtech.apiinterceptor.dto.datasets.AthletesDto;
 import mts.mtech.apiinterceptor.services.datasets.DataSetService;
 import mts.mtech.apiinterceptor.utils.Constants;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/datasets")
 @CrossOrigin
+@Tag(name = "Dataset APIs", description = "Retrieve data from different datasets")
 public class DataSetRestController {
-    private DataSetService dataSetService;
+    private final DataSetService dataSetService;
 
     public DataSetRestController(DataSetService dataSetService) {
         this.dataSetService = dataSetService;
